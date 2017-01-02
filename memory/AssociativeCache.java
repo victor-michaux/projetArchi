@@ -49,14 +49,14 @@ public class AssociativeCache implements Memory{
 
     @Override
     public int read(int address) {
-        return this.readFIFO(address);
-        //return this.readLRU(address);
+        //return this.readFIFO(address);
+        return this.readLRU(address);
     }
 
     @Override
     public void write(int address, int value) {
-        this.writeFIFO(address, value);
-        //this.writeLRU(address, value);
+        //this.writeFIFO(address, value);
+        this.writeLRU(address, value);
     }
 
     @Override
@@ -100,7 +100,7 @@ public class AssociativeCache implements Memory{
             entry.value = value;
             entry.address = address;
             entry.isValid = true;
-            entry.isDirty = false;
+            entry.isDirty = true;
             updateAge(entry);
 
             // Si cache est pas complet
